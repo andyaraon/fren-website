@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$FREN — Making Frens Worldwide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="dot-bg"></div>
+        <div class="hero-content">
+            <div class="section-label">[ $FREN ]</div>
+            <div class="logo-circle">$F</div>
+            <h1>$FREN</h1>
+            <p class="tagline">making frens all over the world</p>
+            <div class="ca-bar">
+                <span class="ca-label">CA:</span>
+                <span class="ca-value">0x000...fren</span>
+                <button class="ca-copy" onclick="copyCA()">[ copy ]</button>
+            </div>
+            <div class="hero-btns">
+                <button class="btn-primary">Buy $FREN</button>
+                <a href="#board" class="btn-secondary">Join Frens ↓</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOKENOMICS -->
+    <section id="tokenomics" class="tokenomics">
+        <div class="section-label">01 / TOKENOMICS</div>
+        <div class="token-grid">
+            <div class="token-card">
+                <div class="token-label">Total Supply</div>
+                <div class="token-value">1,000,000,000</div>
+            </div>
+            <div class="token-card">
+                <div class="token-label">Tax</div>
+                <div class="token-value">0 / 0</div>
+            </div>
+            <div class="token-card">
+                <div class="token-label">LP</div>
+                <div class="token-value">Burned</div>
+            </div>
+            <div class="token-card">
+                <div class="token-label">Mint</div>
+                <div class="token-value">Revoked</div>
+            </div>
+        </div>
+        <div class="token-note">Fair launch. No team allocation. No VC. Just frens.</div>
+    </section>
+
+    <!-- FREN TRACKER -->
+    <section id="tracker" class="tracker">
+        <div class="section-label">02 / FREN TRACKER</div>
+        <h2>Frens Worldwide</h2>
+        <p class="section-sub">Every QR scan on the map. Live. Real. No cap.</p>
+
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-label">TOTAL SCANS</div>
+                <div class="stat-value" id="total-scans">0</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">COUNTRIES</div>
+                <div class="stat-value" id="total-countries">0</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">STATUS</div>
+                <div class="live-status">● LIVE</div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div class="map-header">
+                <span>FREN SCAN MAP — LIVE</span>
+                <span class="blink">● SCANNING</span>
+            </div>
+            <div class="map-body">
+                <svg id="world-map" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="225" x2="900" y2="225" stroke="#222" stroke-width="1" stroke-dasharray="4 4"/>
+                    <line x1="450" y1="0" x2="450" y2="450" stroke="#222" stroke-width="0.5"/>
+                    <!-- North America -->
+                    <path d="M120 80 L200 75 L230 100 L240 140 L220 180 L190 200 L160 220 L140 200 L110 170 L100 130 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
+                    <!-- South America -->
+                    <path d="M190 240 L230 230 L250 260 L255 300 L240 360 L210 390 L185 370 L175 330 L180 290 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
+                    <!-- Europe -->
+                    <path d="M400 70 L450 65 L470 85 L460 110 L430 120 L410 110 L395 90 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
+                    <!-- Africa -->
+                    <path d="M410 140 L460 130 L490 150 L500 200 L490 270 L460 320 L430 330 L405 300 L395 250 L390 200 L395 160 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
+                    <!-- Asia -->
+                    <path d="M480 60 L620 55 L680 80 L720 100 L700 150 L650 170 L580 165 L520 150 L490 130 L470 100 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
+                    <!-- Oceania -->
+                    <path d="M680 250 L740 240 L760 260 L740 290 L700 285 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
+                    <g id="scan-dots"></g>
+                </svg>
+            </div>
+        </div>
+
+        <div class="country-table">
+            <div class="table-header">
+                <span>COUNTRY</span>
+                <span>SCANS</span>
+                <span>BAR</span>
+            </div>
+            <div id="country-rows"></div>
+        </div>
+    </section>
+
+    <!-- FREN BOARD -->
+    <section id="board" class="board">
+        <div class="section-label">03 / FREN BOARD</div>
+        <h2>The Fren Board</h2>
+        <p class="section-sub">No account. No login. Just drop in and say gm.</p>
+
+        <div class="board-container">
+            <div class="board-header">
+                <div class="board-title-row">
+                    <div class="board-logo">$F</div>
+                    <div>
+                        <div class="board-name">The Fren Board</div>
+                        <div class="board-sub">no login. no rules. just frens.</div>
+                    </div>
+                </div>
+                <div class="online-count">
+                    <div class="online-label">FRENS ONLINE</div>
+                    <div class="online-num">
+                        <span class="dot-live"></span>
+                        <span id="online-count">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="identity-bar">
+                you are <span class="fren-name" id="my-name">loading...</span> • auto-assigned on first post
+            </div>
+
+            <div class="board-tabs">
+                <button class="tab active" onclick="switchTab(this)">/gm/</button>
+                <button class="tab" onclick="switchTab(this)">/media/</button>
+                <button class="tab" onclick="switchTab(this)">/trending/</button>
+            </div>
+
+            <div class="messages" id="messages-feed">
+                <div class="loading-msg">loading frens...</div>
+            </div>
+
+            <div class="board-input">
+                <input
+                    type="text"
+                    id="message-input"
+                    placeholder="say something..."
+                    onkeydown="if(event.key==='Enter') postMessage()"
+                />
+                <button class="post-btn" onclick="postMessage()">POST</button>
+            </div>
+            <div class="input-hint">↵ enter to post • anonymous forever</div>
+        </div>
+    </section>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="#home" class="nav-item active" onclick="setActive(this)">Home</a>
+        <a href="#tracker" class="nav-item" onclick="setActive(this)">Tracker</a>
+        <a href="#board" class="nav-item" onclick="setActive(this)">Board</a>
+        <a href="#" class="nav-item buy-btn">Buy $FREN</a>
+    </nav>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -6,20 +6,32 @@
     <title>$FREN — Making Frens Worldwide</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- LIQUID BG -->
+    <div class="liquid-bg"></div>
+
+    <!-- TOP NAV -->
+    <nav class="top-nav">
+        <div class="nav-logo">$FREN</div>
+        <div class="nav-links">
+            <a href="#tracker">TRACKER</a>
+            <a href="#board">BOARD</a>
+            <a href="https://dexscreener.com/solana/JGaCrqMm2JqV9g4wVDiPNr4hDNJny5B6FZb75msjtSC" target="_blank">BUY</a>
+        </div>
+    </nav>
+
     <!-- HERO -->
     <section id="home" class="hero">
-        <div class="dot-bg"></div>
+        <div class="hero-bg"></div>
         <div class="hero-content">
-            <div class="section-label">[ $FREN ]</div>
-            <div class="logo-circle">$F</div>
+            <div class="eyebrow">Making Frens Worldwide</div>
             <h1>$FREN</h1>
-            <p class="tagline">making frens all over the world</p>
+            <p class="tagline">the coin that makes frens</p>
             <div class="ca-bar">
-                <span class="ca-label">CA:</span>
+                <span class="ca-label">CA</span>
                 <span class="ca-value">FqV9fm...ypump</span>
                 <button class="ca-copy" onclick="copyCA()">[ copy ]</button>
             </div>
@@ -37,11 +49,11 @@
         </div>
     </section>
 
-    <!-- FREN TRACKER -->
+    <!-- TRACKER -->
     <section id="tracker" class="tracker">
         <div class="section-label">01 / FREN TRACKER</div>
         <h2>Frens Worldwide</h2>
-        <p class="section-sub">Every QR scan on the map. Live. Real. No cap.</p>
+        <p class="section-sub">Every QR scan. Every city. Live.</p>
 
         <div class="stats-row">
             <div class="stat">
@@ -54,36 +66,17 @@
             </div>
             <div class="stat">
                 <div class="stat-label">STATUS</div>
-                <div class="live-status">● LIVE</div>
+                <div class="live-status"><span class="dot-live"></span> LIVE</div>
             </div>
         </div>
 
-        <div class="map-container">
-            <div class="map-header">
-                <span>FREN SCAN MAP — LIVE</span>
-                <span class="blink">● SCANNING</span>
-            </div>
-            <div class="map-body">
-                <svg id="world-map" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0" y1="225" x2="900" y2="225" stroke="#222" stroke-width="1" stroke-dasharray="4 4"/>
-                    <line x1="450" y1="0" x2="450" y2="450" stroke="#222" stroke-width="0.5"/>
-                    <!-- North America -->
-                    <path d="M120 80 L200 75 L230 100 L240 140 L220 180 L190 200 L160 220 L140 200 L110 170 L100 130 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
-                    <!-- South America -->
-                    <path d="M190 240 L230 230 L250 260 L255 300 L240 360 L210 390 L185 370 L175 330 L180 290 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
-                    <!-- Europe -->
-                    <path d="M400 70 L450 65 L470 85 L460 110 L430 120 L410 110 L395 90 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
-                    <!-- Africa -->
-                    <path d="M410 140 L460 130 L490 150 L500 200 L490 270 L460 320 L430 330 L405 300 L395 250 L390 200 L395 160 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
-                    <!-- Asia -->
-                    <path d="M480 60 L620 55 L680 80 L720 100 L700 150 L650 170 L580 165 L520 150 L490 130 L470 100 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
-                    <!-- Oceania -->
-                    <path d="M680 250 L740 240 L760 260 L740 290 L700 285 Z" fill="#111" stroke="#333" stroke-width="1.5"/>
-                    <g id="scan-dots"></g>
-                </svg>
-            </div>
+        <!-- GLOBE -->
+        <div class="globe-container">
+            <div class="globe-label">FREN SCAN GLOBE — DRAG TO SPIN</div>
+            <canvas id="globe-canvas"></canvas>
         </div>
 
+        <!-- COUNTRY TABLE -->
         <div class="country-table">
             <div class="table-header">
                 <span>COUNTRY</span>
@@ -110,7 +103,7 @@
                     </div>
                 </div>
                 <div class="online-count">
-                    <div class="online-label">FRENS ONLINE</div>
+                    <div class="online-label">ONLINE</div>
                     <div class="online-num">
                         <span class="dot-live"></span>
                         <span id="online-count">—</span>
@@ -119,7 +112,7 @@
             </div>
 
             <div class="identity-bar">
-                you are <span class="fren-name" id="my-name">loading...</span> • auto-assigned on first post
+                you are <span class="fren-name" id="my-name">loading...</span> • permanent & anonymous
             </div>
 
             <div class="board-tabs">

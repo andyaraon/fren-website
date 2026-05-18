@@ -35,25 +35,24 @@ document.getElementById('my-name').textContent = myName;
 
 // ── COPY CA ───────────────────────────────────────────────────
 window.copyCA = function () {
-  navigator.clipboard.writeText('0x000...fren');
+  navigator.clipboard.writeText('FqV9fmCVVCpfstxrG5HHkJpdt3xjn9EQn5WY1uAypump');
   const btn = document.querySelector('.ca-copy');
   btn.textContent = '[ copied! ]';
   setTimeout(() => btn.textContent = '[ copy ]', 2000);
 };
 
-// ── NAV ACTIVE ────────────────────────────────────────────────
+// ── NAV ───────────────────────────────────────────────────────
 window.setActive = function (el) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   el.classList.add('active');
 };
 
-// ── TABS ──────────────────────────────────────────────────────
 window.switchTab = function (el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
 };
 
-// ── COUNTRY POSITIONS ON MAP ──────────────────────────────────
+// ── COUNTRY POSITIONS ─────────────────────────────────────────
 const COUNTRY_POS = {
   NG: { x: 440, y: 228, name: 'Nigeria' },
   GB: { x: 418, y: 82,  name: 'United Kingdom' },
@@ -81,23 +80,17 @@ async function loadScanStats() {
     document.getElementById('total-scans').textContent = data.total.toLocaleString();
     document.getElementById('total-countries').textContent = Object.keys(data.countries).length;
 
-    // Map dots
     const dotsGroup = document.getElementById('scan-dots');
     dotsGroup.innerHTML = '';
-
-    // Country table
     const tableEl = document.getElementById('country-rows');
     tableEl.innerHTML = '';
 
     const sorted = Object.entries(data.countries)
       .sort((a, b) => b[1].count - a[1].count);
-
     const maxScans = sorted[0]?.[1]?.count || 1;
 
     sorted.forEach(([code, info]) => {
       const pos = COUNTRY_POS[code];
-
-      // Draw dot on map
       if (pos) {
         const size = Math.min(4 + (info.count / maxScans) * 8, 12);
         dotsGroup.innerHTML += `
@@ -110,7 +103,6 @@ async function loadScanStats() {
         `;
       }
 
-      // Table row
       const row = document.createElement('div');
       row.className = 'country-row';
       row.innerHTML = `
@@ -151,18 +143,15 @@ onValue(messagesRef, (snapshot) => {
     .map(([id, msg]) => ({ id, ...msg }))
     .sort((a, b) => a.timestamp - b.timestamp);
 
-  // Online count (rough)
   document.getElementById('online-count').textContent =
     Math.min(messages.length + Math.floor(Math.random() * 10) + 3, 99);
 
   messages.forEach((msg, i) => {
     const el = document.createElement('div');
     el.className = 'message-item';
-
     const time = msg.timestamp
       ? new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       : '';
-
     el.innerHTML = `
       <div class="msg-avatar">${(msg.name || 'fren').slice(0, 5)}</div>
       <div style="flex:1">
@@ -185,17 +174,15 @@ onValue(messagesRef, (snapshot) => {
   feedEl.scrollTop = feedEl.scrollHeight;
 });
 
-// ── POST MESSAGE ──────────────────────────────────────────────
+// ── POST ──────────────────────────────────────────────────────
 window.postMessage = function () {
   const input = document.getElementById('message-input');
   const text = input.value.trim();
   if (!text) return;
-
   push(messagesRef, {
     name: myName,
-    text: text,
+    text,
     timestamp: Date.now(),
   });
-
   input.value = '';
 };
